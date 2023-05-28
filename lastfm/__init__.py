@@ -1,5 +1,5 @@
 import os,aiohttp,socket,dotenv,orjson
-from classes import *
+from .classes import *
 from discord.ext import commands
 
 class LastFMException(commands.CommandError):
@@ -76,7 +76,7 @@ class LastFM(object):
 			for tag in trackdata['track']['toptags']['tag']:
 				tags.append(tag['name'])
 			track={'name':tracks[0]['name'],'url':tracks[0]['url'],'playcount':trackdata['track']['userplaycount'],'tags':tags,'image':image,'current':current}
-			artist={'name:self.nornalize(tracks[0]['artist']['#text']),'url':artisturl,'playcount':await self.get_artist_playcount(username,tracks[0]['artist']['#text'])}
+			artist={'name':self.normalize(tracks[0]['artist']['#text']),'url':artisturl,'playcount':await self.get_artist_playcount(username,tracks[0]['artist']['#text'])}
 			album={'name':tracks[0]['album']['#text'],'url':albumurl,'playcount':await self.get_album_playcount(tracks[0]['artist']['#text'],tracks[0]['album']['#text'],username),'image':image}
 			data={'track':track,'album':album,'artist':artist}
 			return NowPlaying(data=data)

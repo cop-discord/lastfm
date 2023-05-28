@@ -24,6 +24,7 @@ class LastFM(object):
 	async def request(self,params,ignore_exceptions=True):
 		attempts=0
 		retries=2
+		url="http://ws.audioscrobbler.com/2.0/"
 		params['api_key']=self.key
 		params['format']='json'
 		while True:

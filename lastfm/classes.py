@@ -52,7 +52,7 @@ class Track(object):
 
 	@property
 	def name(self):
-		return data['name']
+		return self.data['name']
 
 	@property
 	def playcount(self):

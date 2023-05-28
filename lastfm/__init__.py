@@ -19,7 +19,7 @@ class LastFMException(commands.CommandError):
 class LastFM(object):
 	def __init__(self,api_key):
 		self.key=api_key
-		con=aiohttp.TCPConnector(family=socket.AF_INET)
+		self.con=aiohttp.TCPConnector(family=socket.AF_INET)
 
 	async def request(self,params,ignore_exceptions=True):
 		attempts=0
@@ -28,7 +28,7 @@ class LastFM(object):
 		params['format']='json'
 		while True:
 			attempts+=1
-			async with aiohttp.ClientSession(json_serialize=orjson.dumps,connector=con) as session:
+			async with aiohttp.ClientSession(json_serialize=orjson.dumps,connector=self.con) as session:
 				async with session.get(url,params=params,verify_ssl=False) as response:
 					try:
 						return await response.json(loads=orjson.loads)

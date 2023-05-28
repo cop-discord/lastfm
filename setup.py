@@ -11,7 +11,5 @@ setup(
 	url="https://github.com/cop-discord/lastfm",
 	packages=['lastfm'],
 	install_requires=['aiohttp','discord','orjson'],
-	package_data=[['*']],
-	include_package_data=True,
 	python_requires=">=3.6"
 )
